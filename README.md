@@ -197,6 +197,12 @@ python3 manage.py runserver
 
 ##### Windows
 
+###### No arquivo "Makefile" do projeto a 5ª linha deve ser:
+
+```bash
+python manage.py runserver
+```
+
 ###### Instalando Chocolatey
 
 ```bash
@@ -211,9 +217,14 @@ make dev
 
 ##### Linux
 
+###### No arquivo "Makefile" do projeto a 5ª linha deve ser:
+
+```bash
+python3 manage.py runserver
+```
+
 ```bash
 make dev
 ```
-
 
 ### O projeto estará disponível em http://127.0.0.1:8000/medicos
