@@ -109,8 +109,8 @@ npm install tailwindcss @tailwindcss/cli
 #### No terminal execute:
 
 ```bash
-git clone https://github.com/lyalima/gerenciador_de_tarefas.git
-cd gerenciador_de_tarefas
+git clone https://github.com/lyalima/desafio_kaya.git
+cd desafio_kaya
 ```
 
 ### Criando e ativando o ambiente virtual 
