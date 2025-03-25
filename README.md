@@ -40,7 +40,7 @@ python --version
 
 #### Node JS
 
-##### Acesse o site oficial: https://nodejs.org/
+##### Acesse o site oficial: https://nodejs.org/en/download
 
 ##### Baixe a versão LTS para Windows
 
@@ -137,19 +137,43 @@ pip install -r requirements.txt
 
 ### Aplicando as migrações
 
+#### Windows
+
 ```bash
 python manage.py migrate
 ```
 
+#### Linux
+
+```bash
+python3 manage.py migrate
+```
+
 ### Criando um superusuário
+
+#### Windows
 
 ```bash
 python manage.py createsuperuser
 ```
 
+#### Linux
+
+```bash
+python3 manage.py createsuperuser
+```
+
 ### Execute o projeto com:
 
 #### Executando o Tailwind
+
+##### Windows
+
+```bash
+npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch
+```
+
+##### Linux
 
 ```bash
 tailwindcss -i static/css/input.css -o static/css/output.css --watch
@@ -157,14 +181,39 @@ tailwindcss -i static/css/input.css -o static/css/output.css --watch
 
 #### Executando o servidor Django
 
+##### Windows
+
 ```bash
 python manage.py runserver
 ```
 
-### Ou use:
+##### Linux
+
+```bash
+python3 manage.py runserver
+```
+
+#### Usando Makefile:
+
+##### Windows
+
+###### Instalando Chocolatey
+
+```bash
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+###### No terminal dentro da pasta do projeto execute:
 
 ```bash
 make dev
 ```
 
-### A API estará disponível em http://127.0.0.1:8000/.
+##### Linux
+
+```bash
+make dev
+```
+
+
+### O projeto estará disponível em http://127.0.0.1:8000/medicos
