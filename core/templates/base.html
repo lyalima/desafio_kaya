@@ -1,0 +1,260 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Kaya{% endblock %}</title>
+    <link rel="shortcut icon" type="imagex/png" href="{% static 'img/k.png'%}">
+    <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Barra Superior -->
+    <header id="navbar" class="fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-7xl bg-stone-800 bg-opacity-90 rounded-2xl p-4 shadow-lg z-50 transition-all duration-300">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <img src="{% static 'img/kaya_doc_branco.png'%}" class="w-20 h-15">
+                <nav class="relative">
+                    <div class="inline-block relative">
+                        <button id="funcionalidades-btn" class="text-white hover:text-gray-300 mx-8">Funcionalidades ▼</button>
+                        <div id="funcionalidades-menu" class="hidden absolute bg-stone-900 text-green-300 w-52 mt-2 rounded-md shadow-lg">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Descubra Novos Produtos</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Biblioteca de Estudos</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Webinars</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Copiloto</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Benefícios e Parcerias</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Prontuário</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Anamnese</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Agenda</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Perfil Público</a>
+                        </div>
+                    </div>
+                    <div class="inline-block relative ml-4">
+                        <button id="paciente-btn" class="text-white hover:text-gray-300">Paciente ▼</button>
+                        <div id="paciente-menu" class="hidden absolute bg-stone-900 text-green-300 w-52 mt-2 rounded-md shadow-lg">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Médicos Prescritores</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Benefícios da Cannabis</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Glossário Canábico</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Blog da Saúde</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-700">Condições Médicas</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="space-x-2">
+                <button class="bg-green-200 text-gray-900 px-4 py-2 rounded-full">Teste grátis</button>
+                <button class="border border-green-200 text-green-200 px-4 py-2 rounded-full">Login</button>
+            </div>
+        </div>
+    </header>
+    <!-- Conteúdo da Página -->
+    <main class="pt-24 px-4">
+        {% block content %}{% endblock %}
+    </main>
+    <!-- Rodapé -->
+    <footer class="bg-stone-800 w-[97%] mx-auto mt-16 rounded-2xl p-8 text-white relative">
+        <div class="grid grid-cols-3 gap-8 items-start">
+            <div>
+                <img src="{% static 'img/kaya_slogan_branco.png' %}" alt="Logo" class="w-50 h-45">
+                <div class="flex gap-4">
+                    <img src="{% static 'img/kaya_doc_branco.png'%}" alt="logo" class="w-20 h-15 my-6"> 
+                    <img src="{% static 'img/kaya_biz_branco.png'%}" alt="logo" class="w-20 h-15 my-6">
+                    <img src="{% static 'img/kaya_mind_branco.png'%}" alt="logo" class="w-20 h-15 my-6">
+                </div>
+            </div>
+            <div class="flex justify-between my-20">
+                <div class="flex flex-col mx-5">
+                    <div class="mb-4 text-2xl md:text-3xl font-bold" 
+                        style="font-family: Marvin Visions Variable">MÉDICOS</div>
+                    <a href="#" class="block whitespace-nowrap hover:text-gray-400">
+                        Funcionalidades do Kaya Doc
+                    </a>
+                    <a href="#" class="block hover:text-gray-400">FAQ</a>
+                </div>
+                <div class="flex flex-col mx-5">
+                    <div class="mb-4 text-2xl md:text-3xl font-bold" 
+                        style="font-family: Marvin Visions Variable">PACIENTES</div>
+                    <a href="#" class="block hover:text-gray-400">Gostaria de me tornar paciente</a>
+                    <button class="bg-green-200 text-gray-900 px-4 py-2 rounded-full mt-2 my-2 whitespace-nowrap">Saiba mais</button>
+                    <a href="#" class="block hover:text-gray-400">Benefícios da cannabis</a>
+                    <a href="#" class="block hover:text-gray-400">Glossário canábico</a>
+                    <a href="#" class="block hover:text-gray-400">FAQ</a>
+                </div>
+                <div class="flex flex-col mx-5">
+                    <div class="mb-4 text-2xl md:text-3xl font-bold"
+                        style="font-family: Marvin Visions Variable">MARCAS</div>
+                    <a href="#" class="block w-40 break-words hover:text-gray-400">
+                        Sou marca e quero estar no Kaya Doc
+                    </a>
+                    <button class="bg-green-200 text-gray-900 px-4 py-2 rounded-full mt-2 my-2 whitespace-nowrap">Saiba mais</button>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 text-2xl md:text-3xl font-bold"
+            style="font-family: Marvin Visions Variable">NOS SIGA NAS REDES SOCIAS</div>
+            <div class="flex items-center space-x-4 mt-6">
+                <a href="https://www.linkedin.com/company/kaya-mind" target="_blank" class="w-14 h-14 bg-green-300 rounded-full flex items-center justify-center text-black text-2xl hover:bg-green-400 transition">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/kaya.mind/" target="_blank" class="w-14 h-14 bg-green-300 rounded-full flex items-center justify-center text-black text-2xl hover:bg-green-400 transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UCgaHiMJl1zFqlzfdVg1V4lQ" target="_blank" class="w-14 h-14 bg-green-300 rounded-full flex items-center justify-center text-black text-2xl hover:bg-green-400 transition">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        <div class="mt-6 my-14 text-2xl">
+            <h3 class="font-bold" style="font-family: Marvin Visions Variable">FALE CONOSCO</h3>
+            <p>📞 +55 11 91242-3799</p>
+            <p>✉ atendimento@kayadoc.com</p>
+        </div>
+        <!-- Copyright -->
+        <div class="absolute bottom-0 left-0 right-0 w-full bg-white text-black py-2 rounded-t-2xl shadow-md max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mx-10">
+                <p class="text-left">COPYRIGHT©KAYA 2025. ALL RIGHTS RESERVED</p>
+                <img src="{% static 'img/k.png' %}" class="w-7 h-8">
+            </div>
+        </div>
+    </footer>    
+    <!-- Botão de Chat -->
+    <div id="chat-button" class="fixed bottom-6 right-6 w-14 h-14 bg-pink-300 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition hover:bg-pink-400">
+        <i id="chat-icon" class="fas fa-comment text-white text-2xl"></i>
+    </div>
+    <!-- Container do Chat -->
+    <div id="chat-container" class="fixed bottom-20 right-6 w-80 bg-white shadow-lg rounded-lg hidden flex flex-col h-[450px]">
+        <div class="p-4 border-b flex justify-between items-center bg-gray-100 rounded-t-lg">
+            <img src="{% static 'img/k.png' %}" class="w-7 h-8">
+            <h3 class="text-gray-800 font-bold">Suporte Kaya Doc</h3>
+            <button id="close-chat" class="text-gray-500 hover:text-gray-800">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="start-chat" class="p-4 my-80 border-t bg-gray-100 text-center">
+            <button id="start-chat-btn" class="text-pink-500 font-bold hover:underline">Iniciar Conversa →</button>
+        </div>
+        <div id="chat-messages" class="p-4 overflow-y-auto flex-1 space-y-3"></div>
+        <div id="chat-input-container" class="p-4 border-t bg-gray-100 flex items-center hidden">
+            <input id="chat-input" type="text" class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400" placeholder="Digite sua mensagem...">
+            <button id="send-message" class="ml-2 bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">Enviar</button>
+        </div>
+    </div>
+
+    <!-- Alternar a opacidade da barra -->
+    <script>
+        document.addEventListener("scroll", function() {
+            let navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("bg-opacity-50"); 
+                navbar.classList.remove("bg-opacity-90");
+            } else {
+                navbar.classList.add("bg-opacity-90"); 
+                navbar.classList.remove("bg-opacity-50");
+            }
+        });
+    </script>
+    <!-- Opções na barra -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("funcionalidades-btn").addEventListener("click", function () {
+                document.getElementById("funcionalidades-menu").classList.toggle("hidden");
+            });
+            document.getElementById("paciente-btn").addEventListener("click", function () {
+                document.getElementById("paciente-menu").classList.toggle("hidden");
+            });
+        });
+    </script>
+    <!-- Abrir e fechar o chat -->
+    <script>
+        document.getElementById("chat-button").addEventListener("click", function () {
+            let chatContainer = document.getElementById("chat-container");
+            let chatIcon = document.getElementById("chat-icon");
+            if (chatContainer.classList.contains("hidden")) {
+                chatContainer.classList.remove("hidden");
+                chatIcon.classList.remove("fa-comment");
+                chatIcon.classList.add("fa-times");
+            } else {
+                chatContainer.classList.add("hidden");
+                chatIcon.classList.remove("fa-times");
+                chatIcon.classList.add("fa-comment");
+            }
+        });
+        
+        document.getElementById("close-chat").addEventListener("click", function () {
+            document.getElementById("chat-container").classList.add("hidden");
+            let chatIcon = document.getElementById("chat-icon");
+            chatIcon.classList.remove("fa-times");
+            chatIcon.classList.add("fa-comment");
+        });
+    </script>
+    <!-- Enviar mensagem do chat ao backend -->
+    <script>
+        document.getElementById("start-chat-btn").addEventListener("click", function () {
+            document.getElementById("start-chat").classList.add("hidden");
+            document.getElementById("chat-input-container").classList.remove("hidden");
+            document.getElementById("chat-input").focus();
+        });
+        
+        document.getElementById("send-message").addEventListener("click", async function () {
+            let inputField = document.getElementById("chat-input");
+            let userMessage = inputField.value.trim();
+            let chatBox = document.getElementById("chat-messages");
+        
+            if (!userMessage) return;
+        
+            chatBox.innerHTML += `
+                <div class="flex justify-end">
+                    <div class="bg-green-300 text-gray-800 p-3 rounded-lg max-w-xs">
+                        <strong>Você:</strong> ${userMessage}
+                    </div>
+                </div>`;
+        
+            inputField.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        
+            function getCSRFToken() {
+                return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            }
+        
+            async function sendMessage(message) {
+                try {
+                    const response = await fetch("{% url 'chat_assistant' %}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": getCSRFToken()
+                        },
+                        body: JSON.stringify({ message: message })
+                    });
+        
+                    if (!response.ok) throw new Error("Erro na resposta do servidor.");
+        
+                    const data = await response.json();
+        
+                    chatBox.innerHTML += `
+                        <div class="flex justify-start">
+                            <div class="bg-blue-300 text-gray-800 p-3 rounded-lg max-w-xs">
+                                <strong>KayaIA:</strong> ${data.response}
+                            </div>
+                        </div>`;
+        
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                } catch (error) {
+                    console.error("Erro ao enviar mensagem:", error);
+                    chatBox.innerHTML += `
+                        <div class="flex justify-start">
+                            <div class="bg-red-500 text-white p-3 rounded-lg max-w-xs">
+                                <strong>Erro:</strong> Falha na comunicação com o servidor.
+                            </div>
+                        </div>`;
+                }
+            }
+        
+            await sendMessage(userMessage);
+        });        
+    </script>    
+</body>
+</html>

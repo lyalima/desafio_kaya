@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center text-green-700 my-6 uppercase" 
+    style="font-family: Marvin Visions Variable">
+        Encontre seu especialista em Cannabis Medicinal
+    </h1>
+    <h1 class="text-1xl text-center font-bold text-gray-900 mb-6">
+        Busque por especialidade, pelo nome do profissional da saúde ou utilize umas das palavras-chave abaixo.
+    </h1>
+    <!-- Filtros por especialidade -->
+    <div class="flex flex-wrap justify-center gap-2 mb-7 max-w-4xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-2 w-full">
+            <a href="{% url 'doctors_list' %}" class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-semibold 
+                    {% if not request.GET.specialty %} bg-green-400 {% endif %}">
+                TODAS
+            </a>
+            {% for specialty in specialties|slice:":3" %}
+                <a href="{% url 'doctors_list' %}?specialty={{ specialty.id }}" 
+                class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-semibold uppercase 
+                        {% if request.GET.specialty|stringformat:'s' == specialty.id|stringformat:'s' %} bg-green-400 {% endif %}">
+                    {{ specialty.name }}
+                </a>
+            {% endfor %}
+        </div>
+        <div class="flex flex-wrap justify-center gap-2 w-full">
+            {% for specialty in specialties|slice:"3:6" %}
+                <a href="{% url 'doctors_list' %}?specialty={{ specialty.id }}" 
+                class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-semibold uppercase 
+                        {% if request.GET.specialty|stringformat:'s' == specialty.id|stringformat:'s' %} bg-green-400 {% endif %}">
+                    {{ specialty.name }}
+                </a>
+            {% endfor %}
+        </div>
+        <div class="flex flex-wrap justify-center gap-2 w-full">
+            {% for specialty in specialties|slice:"6:9" %}
+                <a href="{% url 'doctors_list' %}?specialty={{ specialty.id }}" 
+                class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-semibold uppercase 
+                        {% if request.GET.specialty|stringformat:'s' == specialty.id|stringformat:'s' %} bg-green-400 {% endif %}">
+                    {{ specialty.name }}
+                </a>
+            {% endfor %}
+        </div>
+        <div class="flex flex-wrap justify-center gap-2 w-full">
+            {% for specialty in specialties|slice:"9:12" %}
+                <a href="{% url 'doctors_list' %}?specialty={{ specialty.id }}" 
+                class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-semibold uppercase 
+                        {% if request.GET.specialty|stringformat:'s' == specialty.id|stringformat:'s' %} bg-green-400 {% endif %}">
+                    {{ specialty.name }}
+                </a>
+            {% endfor %}
+        </div>
+        <div class="flex flex-wrap justify-center gap-2 w-full">
+            {% for specialty in specialties|slice:"12:13" %}
+                <a href="{% url 'doctors_list' %}?specialty={{ specialty.id }}" 
+                class="bg-green-200 text-green-900 px-4 py-2 rounded-full text-sm font-semibold uppercase 
+                        {% if request.GET.specialty|stringformat:'s' == specialty.id|stringformat:'s' %} bg-green-400 {% endif %}">
+                    {{ specialty.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Barra de pesquisa e filtros por valor -->
+    <div class="max-w-5xl mx-auto w-full">
+        <div class="max-w-5xl mx-auto w-full">
+            <div class="relative">
+                <form method="GET" action="{% url 'doctors_list' %}" class="d-flex">
+                    <input type="text" name="search" class="w-full px-11 py-3 rounded-full bg-gray-200 shadow-md focus:outline-none focus:ring-2 focus:ring-green-400">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="absolute left-3 top-3 text-gray-400">🔍</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="flex items-center space-x-2">
+                <span class="font-semibold text-gray-700">Filtros</span>
+                <img src="{% static 'img/filtro.png' %}" alt="Ícone de filtro" class="w-5 h-5">
+            </div>
+            <div class="flex space-x-2 mt-2 my-5">
+                <form method="GET" action="{% url 'doctors_list' %}" class="d-flex">
+                    <input type="hidden" name="order" value="asc">
+                    {% if request.GET.order == 'asc' %} 
+                        <button type="submit" class="px-4 py-2 bg-green-400 rounded-full text-sm hover:bg-gray-300">
+                            Menor Valor
+                        </button>
+                    {% else %}
+                        <button type="submit" class="px-4 py-2 bg-gray-200 rounded-full text-sm hover:bg-gray-300">
+                            Menor Valor
+                        </button>
+                    {% endif %}
+                </form>
+                <form method="GET" action="{% url 'doctors_list' %}" class="d-flex">
+                    <input type="hidden" name="order" value="desc">
+                    {% if request.GET.order == 'desc' %} 
+                        <button type="submit" class="px-4 py-2 bg-green-400 rounded-full text-sm hover:bg-gray-300">
+                            Maior Valor
+                        </button>
+                    {% else %}
+                        <button type="submit" class="px-4 py-2 bg-gray-200 rounded-full text-sm hover:bg-gray-300">
+                            Maior Valor
+                        </button>
+                    {% endif %}
+                </form>
+                <button class="px-4 py-2 bg-gray-200 rounded-full text-sm hover:bg-gray-300">Visualizações</button>
+            </div>
+        </div>
+    </div>
+    <!-- Grid de Médicos -->
+    <div class="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% if doctors %}
+            {% for doctor in doctors %}
+            <a href="{% url 'doctor_detail' doctor.pk %}">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+                    {% if doctor.photo %}
+                        <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" class="w-full h-60 object-cover">
+                    {% endif %}
+                    <div class="p-4 flex-grow">
+                        <h2 class="text-xl font-bold">{{ doctor.name }}</h2>
+                        <p class="text-gray-600"><i>{{ doctor.specialty }}</i></p>
+                        <p class="text-lg font-bold">R$ {{ doctor.value }}</p>
+                    </div>
+                    <div class="p-4 flex flex-col space-y-2">
+                        <button class="bg-green-900 text-white px-4 py-2 rounded-lg w-full">Agendar consulta</button>
+                        <button class="bg-green-200 text-gray-600 px-4 py-2 rounded-lg w-full">Ver mais</button>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        {% else %}
+            <p class="text-center text-gray-600 text-lg col-span-full py-10">Nenhum médico encontrado.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
