@@ -49,7 +49,7 @@ class Specialty(models.Model):
     name = models.CharField(max_length=255, verbose_name='Especalidade')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
 
 class Doctor(models.Model):
@@ -57,7 +57,7 @@ class Doctor(models.Model):
     gender = models.CharField(max_length=9, choices=gender_choices, verbose_name='Gênero')
     photo = models.ImageField(upload_to='doctors/', verbose_name='Foto', null=True, blank=True)
     crm = models.CharField(max_length=6, unique=True, verbose_name='CRM')
-    specialty = models.ForeignKey(Specialty, on_delete=models.PROTECT, related_name='doctor_specialty', verbose_name='Especialidade')
+    specialty = models.ForeignKey(Specialty, on_delete=models.PROTECT, related_name='specialties', verbose_name='Especialidade')
     value = models.CharField(max_length=255, null=True, blank=True, verbose_name='Valor')
     city = models.CharField(max_length=255, verbose_name='Cidade')
     state = models.CharField(max_length=2, choices=state_choices, verbose_name='Estado')
@@ -69,7 +69,7 @@ class Doctor(models.Model):
     services = MultipleSelectionField(choices=service_choices, verbose_name='Atendimento')
     accepts_agreement = models.BooleanField(verbose_name='Aceita Convênio')
     feedback_followup= models.TextField(max_length=255, verbose_name='Retorno e Acompanhamento', default='Não informado')
-    cannabis_experience = models.TextField(default='Não informado', verbose_name='Experiência com prescrição de produtos à base de cannabis')
+    cannabis_experience = models.TextField(verbose_name='Experiência com prescrição de produtos à base de cannabis', default='Não informado')
 
     def __str__(self):
         return f'{self.name} | {self.specialty}'
