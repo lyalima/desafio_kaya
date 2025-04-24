@@ -103,7 +103,7 @@ cd desafio_kaya
 
 ```bash
 python -m venv venv
-.env\Scripts\activate
+.\venv\Scripts\Activate.ps1
 ```
 
 #### Linux
